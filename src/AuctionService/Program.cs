@@ -34,8 +34,17 @@ else
     app.UseExceptionHandler("/Error");
 }
 
-app.UseAuthorization();
-
 app.MapControllers();
+
+try
+{
+    DbInitializer.InitDB(app);
+}
+catch (Exception e)
+{
+    Console.WriteLine(e);
+}
+
+app.UseAuthorization();
 
 app.Run();
