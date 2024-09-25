@@ -103,7 +103,10 @@ StyleCopReport.xml
 *.pidb
 *.svclog
 *.scc
+
+# VSCODE Files
 obj/
+.vscode/
 
 # Chutzpah Test files
 _Chutzpah*
