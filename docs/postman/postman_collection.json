@@ -22,8 +22,8 @@
                   "    pm.response.to.have.status(200);",
                   "})",
                   "",
-                  "pm.test('Should be 10 items', function() {",
-                  "    pm.expect(jsonData.length).to.equal(10);",
+                  "pm.test('Should be 5 items', function() {",
+                  "    pm.expect(jsonData.length).to.equal(5);",
                   "})",
                   "",
                   "pm.test('First item should be AI Project', function() {",
@@ -261,6 +261,28 @@
             }
           },
           "response": []
+        }
+      ],
+      "variable": [
+        {
+          "key": "auctionApi",
+          "value": "http://localhost:7001",
+          "type": "string"
+        },
+        {
+          "key": "searchApi",
+          "value": "http://localhost:7002",
+          "type": "string"
+        },
+        {
+          "key": "identitySvc",
+          "value": "http://localhost:5000",
+          "type": "string"
+        },
+        {
+          "key": "gateway",
+          "value": "http://localhost:6001",
+          "type": "string"
         }
       ]
     }
