@@ -1,0 +1,268 @@
+{
+  "info": {
+    "_postman_id": "e9d7f1d8-4b2c-4f68-9ad5-a0a4e55d9f3b",
+    "name": "saas-auction-project",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "3f24507b-2bc8-4f6f-a3c9-8c60b4371e8d"
+  },
+  "item": [
+    {
+      "name": "Auction Service",
+      "item": [
+        {
+          "name": "Get all auctions",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "",
+                  "pm.test('Status code is 200', function() {",
+                  "    pm.response.to.have.status(200);",
+                  "})",
+                  "",
+                  "pm.test('Should be 10 items', function() {",
+                  "    pm.expect(jsonData.length).to.equal(10);",
+                  "})",
+                  "",
+                  "pm.test('First item should be AI Project', function() {",
+                  "    pm.expect(jsonData[0].projectName).to.eq('AI Image Classifier');",
+                  "    pm.expect(jsonData[0].category).to.eq('AI');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{auctionApi}}/api/auctions",
+              "host": ["{{auctionApi}}"],
+              "path": ["api", "auctions"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get E-Commerce Web App",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "",
+                  "pm.test('Status code is 200', function() {",
+                  "    pm.response.to.have.status(200);",
+                  "})",
+                  "",
+                  "pm.test('Item is E-Commerce Web App', function() {",
+                  "     pm.expect(jsonData[0].projectName).to.eq('E-commerce Web App');",
+                  "})"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{auctionApi}}/api/auctions/88dad470-b6da-471a-ba0c-e783772bccf9",
+              "host": ["{{auctionApi}}"],
+              "path": [
+                "api",
+                "auctions",
+                "88dad470-b6da-471a-ba0c-e783772bccf9"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create new Auction",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 201\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "pm.test(\"Response body contains expected properties\", function () {",
+                  "    pm.expect(jsonData).to.haveOwnProperty('id');",
+                  "    pm.expect(jsonData).to.haveOwnProperty('projectName');",
+                  "    pm.expect(jsonData).to.haveOwnProperty('description');",
+                  "    pm.expect(jsonData).to.haveOwnProperty('category');",
+                  "    pm.expect(jsonData).to.haveOwnProperty('imageUrl');",
+                  "    pm.expect(jsonData).to.haveOwnProperty('seller');",
+                  "    pm.expect(jsonData.status).to.eq('Live');",
+                  "});",
+                  "",
+                  "pm.collectionVariables.set(\"createdItemId\", jsonData.id);"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "var date = new Date()",
+                  "date.setDate(date.getDate() + 14);",
+                  "var dateString = date.toISOString();",
+                  "pm.variables.set(\"dateString\", dateString);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"projectName\": \"Productivity Tool\",\n  \"description\": \"A simple productivity tool to manage tasks.\",\n  \"category\": \"Productivity\",\n  \"itemStatus\": \"FullyFinished\",\n  \"imageUrl\": \"https://example.com/productivity-tool.png\",\n  \"reservePrice\": 100,\n  \"auctionEnd\": \"{{dateString}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{auctionApi}}/api/auctions",
+              "host": ["{{auctionApi}}"],
+              "path": ["api", "auctions"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update the created auction",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function() {",
+                  "    pm.response.to.have.status(200);",
+                  "})"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"projectName\": \"Productivity Tool V2 Updated\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{auctionApi}}/api/auctions/{{createdItemId}}",
+              "host": ["{{auctionApi}}"],
+              "path": ["api", "auctions", "{{createdItemId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Updated Auction",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "",
+                  "pm.test('Status code is 200', function() {",
+                  "    pm.response.to.have.status(200);",
+                  "})",
+                  "",
+                  "pm.test('Project name includes updated', function() {",
+                  "    pm.expect(jsonData.projectName).to.include('Updated');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{auctionApi}}/api/auctions/{{createdItemId}}",
+              "host": ["{{auctionApi}}"],
+              "path": ["api", "auctions", "{{createdItemId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Auction",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function() {",
+                  "    pm.response.to.have.status(200);",
+                  "})"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{auctionApi}}/api/auctions/{{createdItemId}}",
+              "host": ["{{auctionApi}}"],
+              "path": ["api", "auctions", "{{createdItemId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Deleted Auction - Should return 404",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 404', function() {",
+                  "    pm.response.to.have.status(404);",
+                  "})"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{auctionApi}}/api/auctions/{{createdItemId}}",
+              "host": ["{{auctionApi}}"],
+              "path": ["api", "auctions", "{{createdItemId}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
