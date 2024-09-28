@@ -60,7 +60,7 @@
                   "})",
                   "",
                   "pm.test('Item is E-Commerce Web App', function() {",
-                  "     pm.expect(jsonData[0].projectName).to.eq('E-commerce Web App');",
+                  "     pm.expect(jsonData.projectName).to.eq('E-commerce Web App');",
                   "})"
                 ],
                 "type": "text/javascript"
@@ -71,7 +71,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{auctionApi}}/api/auctions/88dad470-b6da-471a-ba0c-e783772bccf9",
+              "raw": "{{auctionApi}}/api/auctions/466e4744-4dc5-4987-aae0-b621acfc5e39",
               "host": ["{{auctionApi}}"],
               "path": [
                 "api",
