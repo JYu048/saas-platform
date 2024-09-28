@@ -1,3 +1,5 @@
+using SearchService.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -18,5 +20,18 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapControllers();
+
+app.Lifetime.ApplicationStarted.Register(async () =>
+{
+    try
+    {
+        await DbInitializer.InitDB(app);
+    }
+    catch (Exception e)
+    {
+
+        Console.WriteLine(e);
+    }
+});
 
 app.Run();
