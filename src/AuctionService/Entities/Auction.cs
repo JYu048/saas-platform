@@ -4,11 +4,11 @@ namespace AuctionService.Entities;
 
 public class Auction
 {
-    public Guid Id { get; set; } // default primary key
+    public required Guid Id { get; set; } // default primary key
     public int ReservePrice { get; set; } = 0;
 
     // Optional Seller and Winner fields
-    public string? Seller { get; set; } // TODO: Not nullable (after identity server)
+    public required string Seller { get; set; }
 
     public string? Winner { get; set; }
     public int? SoldAmount { get; set; }
@@ -16,6 +16,6 @@ public class Auction
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow; // Standard time format, enforced by Postgres
     public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
     public DateTime? AuctionEnd { get; set; }
-    public Status Status { get; set; }
-    public Item Item { get; set; }
+    public required Status Status { get; set; }
+    public required Item Item { get; set; }
 }

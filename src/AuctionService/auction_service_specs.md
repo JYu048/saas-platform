@@ -106,55 +106,55 @@
 
 ### AuctionDto.cs
 
-| Property Name     | Property Type | Nullable | Default Value |
-| ----------------- | ------------- | -------- | ------------- |
-| Id                | Guid          | No       |               |
-| CreatedAt         | DateTime      | No       |               |
-| UpdatedAt         | DateTime      | No       |               |
-| AuctionEnd?       | DateTime      | Yes      |               |
-| Seller            | string        | No       |               |
-| Winner?           | string        | Yes      |               |
-| Status            | Status        | No       |               |
-| ReservePrice      | int           | No       |               |
-| SoldAmount?       | int           | Yes      |               |
-| CurrentHighBid?   | int           | Yes      |               |
-| ProjectName       | string        | No       |               |
-| Description       | string        | No       |               |
-| Category          | Category      | No       |               |
-| ItemStatus        | ItemStatus    | No       |               |
-| RepositoryUrl?    | string        | Yes      |               |
-| DemoUrl?          | string        | Yes      |               |
-| DocumentationUrl? | string        | Yes      |               |
-| ImageUrl?         | string        | Yes      |               |
+| Property Name    | Property Type |
+| ---------------- | ------------- |
+| Id               | Guid          |
+| CreatedAt        | DateTime      |
+| UpdatedAt        | DateTime      |
+| AuctionEnd       | DateTime      |
+| Seller           | string        |
+| Winner           | string        |
+| Status           | string        |
+| ReservePrice     | int           |
+| SoldAmount       | int           |
+| CurrentHighBid   | int           |
+| ProjectName      | string        |
+| Description      | string        |
+| Category         | string        |
+| ItemStatus       | string        |
+| RepositoryUrl    | string        |
+| DemoUrl          | string        |
+| DocumentationUrl | string        |
+| ImageUrl         | string        |
 
 ### CreateAuctionDto.cs
 
-| Property Name     | Property Type | Nullable | Default Value |
-| ----------------- | ------------- | -------- | ------------- |
-| ProjectName       | string        | No       |               |
-| Description       | string        | No       |               |
-| Category          | Category      | No       |               |
-| ItemStatus        | ItemStatus    | No       |               |
-| RepositoryUrl?    | string        | Yes      |               |
-| DemoUrl?          | string        | Yes      |               |
-| DocumentationUrl? | string        | Yes      |               |
-| ImageUrl?         | string        | Yes      |               |
-| ReservePrice      | int           | No       |               |
-| AuctionEnd?       | DateTime      | Yes      |               |
+| Property Name    | Property Type |
+| ---------------- | ------------- |
+| ProjectName      | string        |
+| Description      | string        |
+| Category         | string        |
+| ItemStatus       | string        |
+| RepositoryUrl    | string        |
+| DemoUrl          | string        |
+| DocumentationUrl | string        |
+| ImageUrl         | string        |
+| ReservePrice     | int           |
+| AuctionEnd       | DateTime      |
 
 ### UpdateAuctionDto.cs
 
-| Property Name     | Property Type | Nullable | Default Value |
-| ----------------- | ------------- | -------- | ------------- |
-| ProjectName       | string        | No       |               |
-| Description       | string        | No       |               |
-| Category          | Category      | No       |               |
-| ItemStatus        | ItemStatus    | No       |               |
-| RepositoryUrl?    | string        | Yes      |               |
-| DemoUrl?          | string        | Yes      |               |
-| DocumentationUrl? | string        | Yes      |               |
-| ImageUrl?         | string        | Yes      |               |
-| AuctionEnd?       | DateTime      | Yes      |               |
+| Property Name    | Property Type |
+| ---------------- | ------------- |
+| ProjectName      | string        |
+| Description      | string        |
+| Category         | string        |
+| ItemStatus       | string        |
+| RepositoryUrl    | string        |
+| DemoUrl          | string        |
+| DocumentationUrl | string        |
+| ImageUrl         | string        |
+| AuctionEnd       | DateTime      |
 
 ## Event Types
 
