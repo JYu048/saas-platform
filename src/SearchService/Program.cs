@@ -1,3 +1,5 @@
+using Polly;
+using Polly.Extensions.Http;
 using SearchService.Data;
 using SearchService.Services;
 
@@ -10,7 +12,10 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddControllers();
 
-builder.Services.AddHttpClient<AuctionSvcHttpClient>();
+builder.Services.AddHttpClient<AuctionSvcHttpClient>().ConfigureHttpClient(client =>
+    {
+        client.Timeout = TimeSpan.FromMinutes(5);
+    }).AddPolicyHandler(GetPolicy());
 
 
 var app = builder.Build();
@@ -38,3 +43,8 @@ app.Lifetime.ApplicationStarted.Register(async () =>
 });
 
 app.Run();
+
+static IAsyncPolicy<HttpResponseMessage> GetPolicy()
+    => HttpPolicyExtensions
+        .HandleTransientHttpError()
+        .WaitAndRetryForeverAsync(_ => TimeSpan.FromSeconds(10));
