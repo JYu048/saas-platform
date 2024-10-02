@@ -262,29 +262,245 @@
           },
           "response": []
         }
-      ],
-      "variable": [
+      ]
+    },
+    {
+      "name": "Search Service",
+      "item": [
         {
-          "key": "auctionApi",
-          "value": "http://localhost:7001",
-          "type": "string"
+          "name": "Get all items",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "",
+                  "pm.test('Status code is 200', function() {",
+                  "    pm.response.to.have.status(200);",
+                  "})",
+                  "",
+                  "pm.test('First item is Team Collaboration Tool', function() {",
+                  "    pm.expect(jsonData.result[0].projectName).to.eq('AI Image Classifier');",
+                  "})",
+                  "",
+                  "pm.test('Result includes results, pageCount and totalCount properties', function() {",
+                  "    pm.expect(jsonData).to.haveOwnProperty('result');",
+                  "    pm.expect(jsonData).to.haveOwnProperty('pageCount');",
+                  "    pm.expect(jsonData).to.haveOwnProperty('totalCount');",
+                  "})"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{searchApi}}/api/search",
+              "host": ["{{searchApi}}"],
+              "path": ["api", "search"]
+            }
+          },
+          "response": []
         },
         {
-          "key": "searchApi",
-          "value": "http://localhost:7002",
-          "type": "string"
+          "name": "Get all items with category of SaaS",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "",
+                  "pm.test('Status code is 200', function() {",
+                  "    pm.response.to.have.status(200);",
+                  "})",
+                  "",
+                  "pm.test('First item is Team Collaboration Tool', function() {",
+                  "    pm.expect(jsonData.result[0].projectName).to.eq('Team Collaboration Tool');",
+                  "})",
+                  "",
+                  "pm.test('Result includes results, pageCount and totalCount properties', function() {",
+                  "    pm.expect(jsonData).to.haveOwnProperty('result');",
+                  "    pm.expect(jsonData).to.haveOwnProperty('pageCount');",
+                  "    pm.expect(jsonData).to.haveOwnProperty('totalCount');",
+                  "})"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{searchApi}}/api/search?category=SaaS",
+              "host": ["{{searchApi}}"],
+              "path": ["api", "search"],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "SaaS"
+                }
+              ]
+            }
+          },
+          "response": []
         },
         {
-          "key": "identitySvc",
-          "value": "http://localhost:5000",
-          "type": "string"
+          "name": "Get all items with no params",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "",
+                  "pm.test('Status code is 200', function() {",
+                  "    pm.response.to.have.status(200);",
+                  "})",
+                  "",
+                  "pm.test('Result includes results, pageCount and totalCount properties', function() {",
+                  "    pm.expect(jsonData).to.haveOwnProperty('result');",
+                  "    pm.expect(jsonData).to.haveOwnProperty('pageCount');",
+                  "    pm.expect(jsonData).to.haveOwnProperty('totalCount');",
+                  "})",
+                  "",
+                  "pm.test('pageCount is 2 and totalCount is 5', function() {",
+                  "    pm.expect(jsonData.pageCount).to.eq(2);",
+                  "    pm.expect(jsonData.totalCount).to.eq(5);",
+                  "})"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{searchApi}}/api/search",
+              "host": ["{{searchApi}}"],
+              "path": ["api", "search"]
+            }
+          },
+          "response": []
         },
         {
-          "key": "gateway",
-          "value": "http://localhost:6001",
-          "type": "string"
+          "name": "Get all items with pageSize and pageNumber",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "",
+                  "pm.test('Status code is 200', function() {",
+                  "    pm.response.to.have.status(200);",
+                  "})",
+                  "",
+                  "pm.test('Result includes results, pageCount and totalCount properties', function() {",
+                  "    pm.expect(jsonData).to.haveOwnProperty('result');",
+                  "    pm.expect(jsonData).to.haveOwnProperty('pageCount');",
+                  "    pm.expect(jsonData).to.haveOwnProperty('totalCount');",
+                  "})",
+                  "pm.test('pageCount is 3', function() {",
+                  "    pm.expect(jsonData.pageCount).to.eq(3);",
+                  "})"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{searchApi}}/api/search?pageNumber=2&pageSize=4",
+              "host": ["{{searchApi}}"],
+              "path": ["api", "search"],
+              "query": [
+                {
+                  "key": "pageNumber",
+                  "value": "3"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all items with Bob as seller",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "",
+                  "pm.test('Status code is 200', function() {",
+                  "    pm.response.to.have.status(200);",
+                  "})",
+                  "",
+                  "pm.test('Result includes results, pageCount and totalCount properties', function() {",
+                  "    pm.expect(jsonData).to.haveOwnProperty('result');",
+                  "    pm.expect(jsonData).to.haveOwnProperty('pageCount');",
+                  "    pm.expect(jsonData).to.haveOwnProperty('totalCount');",
+                  "})",
+                  "pm.test('Seller is Bob', function() {",
+                  "    pm.expect(jsonData.result[0].seller).to.eq('bob');",
+                  "})"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{searchApi}}/api/search?seller=bob",
+              "host": ["{{searchApi}}"],
+              "path": ["api", "search"],
+              "query": [
+                {
+                  "key": "seller",
+                  "value": "bob"
+                }
+              ]
+            }
+          },
+          "response": []
         }
       ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "auctionApi",
+      "value": "http://localhost:7001",
+      "type": "string"
+    },
+    {
+      "key": "searchApi",
+      "value": "http://localhost:7002",
+      "type": "string"
+    },
+    {
+      "key": "identitySvc",
+      "value": "http://localhost:5000",
+      "type": "string"
+    },
+    {
+      "key": "gateway",
+      "value": "http://localhost:6001",
+      "type": "string"
     }
   ]
 }

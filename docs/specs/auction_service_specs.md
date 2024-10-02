@@ -11,11 +11,15 @@
 
 ## NuGet Packages
 
-- `AutoMapper.Extensions.Microsoft.DependencyInjection`
-- `Microsoft.AspNetCore.Authentication.JwtBearer`
-- `Microsoft.EntityFrameworkCore.Design`
-- `Npgsql.EntityFrameworkCore.PostgreSQL`
-- `MassTransit.RabbitMQ`
+- `AutoMapper.Extensions.Microsoft.DependencyInjection` - Version 12.0.1
+- `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` - Version 8.0.8
+- `Microsoft.EntityFrameworkCore` - Version 8.0.8
+- `Microsoft.EntityFrameworkCore.Design` - Version 8.0.8
+- `Npgsql.EntityFrameworkCore.PostgreSQL` - Version 8.0.4
+- `Serilog.AspNetCore` - Version 8.0.2
+- `Serilog.Sinks.Console` - Version 6.0.0
+- `Serilog.Sinks.File` - Version 6.0.0
+- `Swashbuckle.AspNetCore` - Version 6.4.0
 
 ## External (User)
 
@@ -50,6 +54,8 @@
 
 ## Models
 
+`TODO: Update required properties`
+
 ### Auction.cs
 
 | Property Name   | Property Type | Default Value         |
@@ -73,7 +79,7 @@
 | Id                | Guid              |                          |
 | ProjectName       | string            |                          |
 | Description       | string            |                          |
-| Category          | Category          | Category.SaaS            |
+| Category          | Category          |                          |
 | ItemStatus        | ItemStatus        | ItemStatus.FullyFinished |
 | RepositoryUrl?    | string            |                          |
 | DemoUrl?          | string            |                          |
@@ -170,13 +176,13 @@
 | Winner?           | string        | The username of the auction winner (nullable)      |
 | ProjectName       | string        | The name of the software project                   |
 | Description       | string        | A description of the software project              |
-| Category          | Category      | The category (e.g., SaaS, AI, API, etc.)           |
-| ItemStatus        | ItemStatus    |                                                    |
+| Category          | string        | The category (e.g., SaaS, AI, API, etc.)           |
+| ItemStatus        | string        |                                                    |
 | RepositoryUrl?    | string        | The URL to the project's repository (nullable)     |
 | DemoUrl?          | string        | The URL to the project demo (nullable)             |
 | DocumentationUrl? | string        | The URL to the project documentation (nullable)    |
 | ImageUrl?         | string        | URL for an image of the project (nullable)         |
-| Status            | Status        | The current status of the auction                  |
+| Status            | string        | The current status of the auction                  |
 | ReservePrice      | int           | The minimum price required to sell                 |
 | SoldAmount?       | int           | The amount the auction was sold for (nullable)     |
 | CurrentHighBid?   | int           | The current highest bid (nullable)                 |
@@ -188,8 +194,8 @@
 | Id                | Guid          | Unique identifier for the auction               |
 | ProjectName       | string        | The name of the software project                |
 | Description       | string        | A description of the software project           |
-| Category          | Category      | The category (e.g., SaaS, AI, API, etc.)        |
-| ItemStatus        | ItemStatus    |                                                 |
+| Category          | string        | The category (e.g., SaaS, AI, API, etc.)        |
+| ItemStatus        | string        |                                                 |
 | RepositoryUrl?    | string        | The URL to the project's repository (nullable)  |
 | DemoUrl?          | string        | The URL to the project demo (nullable)          |
 | DocumentationUrl? | string        | The URL to the project documentation (nullable) |
@@ -211,7 +217,7 @@
 | Id                | Guid          | Unique identifier for the auction               |
 | ProjectName       | string        | The name of the software project                |
 | Description       | string        | A description of the software project           |
-| Category          | Category      | The category (e.g., SaaS, AI, API, etc.)        |
+| Category          | string        | The category (e.g., SaaS, AI, API, etc.)        |
 | RepositoryUrl?    | string        | The URL to the project's repository (nullable)  |
 | DemoUrl?          | string        | The URL to the project demo (nullable)          |
 | DocumentationUrl? | string        | The URL to the project documentation (nullable) |
